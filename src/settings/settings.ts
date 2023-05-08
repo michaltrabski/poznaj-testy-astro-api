@@ -1,5 +1,5 @@
 export const LOCALHOST = "http://localhost:3000";
-export const DEPLOY_URL = "https://poznaj-testy-astro-app.netlify.app";
+export const DEPLOY_URL = "https://poznaj-testy-astro-api.netlify.app";
 
 // LIMITS FOR DEVELOPMENT
 export const LIMITS = {
