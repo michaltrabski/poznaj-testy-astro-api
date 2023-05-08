@@ -1,3 +1,5 @@
+import slugify from "slugify";
+import type { Question } from "../pages/api/all-questions/[allQuestionsWithLimit].json";
 import { DEPLOY_URL, LOCALHOST } from "../settings/settings";
 
 export function getFullUrl(url: string) {
@@ -9,6 +11,29 @@ export function getFullUrl(url: string) {
   }
 
   return domain + "/" + url;
+}
+
+export function createQuestionUrl(question: Question, category: string) {
+  const slug = `${getSlug(
+    question.t.slice(0, 160)
+  )}-id-pytania-${question.id.replace("id", "")}`;
+
+  if (category === "b") {
+    return `${slug}`;
+  }
+
+  return `kat-${category}/${slug}`;
+}
+
+export function getSlug(text: string) {
+  return slugify(text, {
+    replacement: "-", // replace spaces with replacement character, defaults to `-`
+    remove: /[*+~,.()/'"!:@?;]/g, // remove characters that match regex, defaults to `undefined`
+    lower: true, // convert to lower case, defaults to `false`
+    strict: false, // strip special characters except replacement, defaults to `false`
+    locale: "pl", // language code of the locale to use
+    trim: true, // trim leading and trailing replacement chars, defaults to `true`
+  });
 }
 
 // import data from "../data/data";
@@ -236,18 +261,6 @@ export function getFullUrl(url: string) {
 //   });
 // }
 
-// export function createQuestionUrl(question: Question, category: string) {
-//   const slug = `${getSlug(
-//     question.text.slice(0, 160)
-//   )}-id-pytania-${question.id.replace("id", "")}`;
-
-//   if (category === "b") {
-//     return `${slug}`;
-//   }
-
-//   return `kat-${category}/${slug}`;
-// }
-
 // export function getFullUrl(url: string) {
 //   const domain =
 //     import.meta.env.MODE === "development" ? LOCALHOST : DEPLOY_URL;
@@ -257,17 +270,6 @@ export function getFullUrl(url: string) {
 //   }
 
 //   return domain + "/" + url;
-// }
-
-// export function getSlug(text: string) {
-//   return slugify(text, {
-//     replacement: "-", // replace spaces with replacement character, defaults to `-`
-//     remove: /[*+~,.()/'"!:@?;]/g, // remove characters that match regex, defaults to `undefined`
-//     lower: true, // convert to lower case, defaults to `false`
-//     strict: false, // strip special characters except replacement, defaults to `false`
-//     locale: "pl", // language code of the locale to use
-//     trim: true, // trim leading and trailing replacement chars, defaults to `true`
-//   });
 // }
 
 // export function getAllCategoriesFromData(data: ApiDataItem[]) {

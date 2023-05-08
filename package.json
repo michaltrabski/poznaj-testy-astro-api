@@ -22,6 +22,7 @@
   "dependencies": {
     "astro": "^2.2.1",
     "convert-excel-to-json": "^1.7.0",
-    "fs-extra": "^11.1.0"
+    "fs-extra": "^11.1.0",
+    "slugify": "^1.6.6"
   }
 }
