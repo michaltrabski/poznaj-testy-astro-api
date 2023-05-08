@@ -1,0 +1,24 @@
+---
+import { LIMITS } from "../settings/settings.ts";
+import { getFullUrl } from "../utils/utils.js";
+---
+
+{
+  Object.entries(LIMITS).map(([key, value]) => {
+    const href = getFullUrl(`api/all-questions/${value}.json`);
+
+    return (
+      <div>
+        <p>
+          <a href={href}>{href}</a>
+        </p>
+      </div>
+    );
+  })
+}
+
+<pre>
+    <code>
+        {JSON.stringify(LIMITS, null, 2)}
+    </code>
+</pre>
